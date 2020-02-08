@@ -1,51 +1,24 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "msvc build",
-        "type": "shell",
-        "command": "cl.exe",
-        "args": [
-          "/EHsc",
-          "/Zi",
-          "/std:c++17",
-          "/Fe:",
-          "clipboard.exe",
-          "main.cpp",
-          "User32.lib",
-          "ws2_32.lib",
-          "Userenv.lib",
-          "Advapi32.lib",
-          "target/x86_64-pc-windows-msvc/debug/clipboard_rs.lib",
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "presentation": {
-          "reveal": "always"
-        },
-        "problemMatcher": "$msCompile"
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ninja",
+      "type": "process",
+      "command": "ninja",
+      "args": [
+        "-C",
+        "out/build/x64-Release",
+        "-v"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
       },
-      {
-        "label": "cargo build",
-        "type": "shell",
-        "command": "cargo.exe",
-        "args": [
-          "build",
-          "--manifest-path",
-          "clipboard_rs/Cargo.toml",
-          "--target",
-          "x86_64-pc-windows-msvc"
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "presentation": {
-          "reveal": "always"
-        },
-        "problemMatcher": "$msCompile"
-      }
-    ]
-  }
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

@@ -5,6 +5,7 @@
 
 #include <windows.h>
 
+extern "C" void print_clipboard_file(wchar_t const* filename, size_t len);
 
 [[noreturn]] void
 Usage()
@@ -61,8 +62,7 @@ ReportError(ErrorRecord Rec)
     ReportError(e); \
 }
 
-void
-PrintClipboardText()
+void PrintClipboardText()
 {
     auto success = OpenClipboard(nullptr);
     if (!success)
@@ -172,6 +172,7 @@ int wmain(int argc, const wchar_t** argv)
         else
         {
             // Print to a file
+            print_clipboard_file(filename.c_str(), filename.size());
         }
     }
     else if (!_wcsicmp(command, L"copy"))
